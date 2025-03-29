@@ -1,0 +1,58 @@
+! Configuration for VLANs and interfaces
+hostname Switch
+!
+! Create VLANs
+vlan 10
+ name AA
+ exit
+vlan 20
+ name BB
+ exit
+vlan 30
+ name CC
+ exit
+vlan 40
+ name DD
+ exit
+!
+! Configure interfaces for VLANs
+interface range fa0/1-2
+ switchport mode access
+ switchport access vlan 10
+ exit
+interface range fa0/3-4
+ switchport mode access
+ switchport access vlan 20
+ exit
+interface range fa0/5-6
+ switchport mode access
+ switchport access vlan 30
+ exit
+interface range fa0/7-8
+ switchport mode access
+ switchport access vlan 40
+ exit
+!
+! Configure IP addresses for VLAN interfaces
+interface vlan 10
+ ip address 192.168.1.62 255.255.255.192
+ no shutdown
+ exit
+interface vlan 20
+ ip address 192.168.1.126 255.255.255.192
+ no shutdown
+ exit
+interface vlan 30
+ ip address 192.168.1.190 255.255.255.192
+ no shutdown
+ exit
+interface vlan 40
+ ip address 192.168.1.254 255.255.255.192
+ no shutdown
+ exit
+!
+! Enable IP routing
+ip routing
+!
+! Save configuration
+write memory
